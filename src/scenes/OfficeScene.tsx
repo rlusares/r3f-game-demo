@@ -10,18 +10,21 @@ import CoffeeMachine from '../entities/CoffeeMachine';
 import PizzaPickup from '../entities/PizzaPickup';
 import Plant from '../entities/Plant';
 import Player from '../entities/Player';
+import NPC from '../entities/NPC';
 import Workstation from '../entities/Workstation';
+import OtherDoor from '../entities/OtherDoor';
 import spriteData from '../spriteData';
+import { allowedPos } from './mapdata/officemap';
 
 const mapData = mapDataString(`
 # # # # # # # # # # # # # # # # #
 # · W T # T · · W T · W · · · T #
-# · · · · · · · · · · · · · · o ·
+# · · · · · · · · · · · · · · o D
 # o · · # · · · # # # # · · # # #
 # # # # # · · · # W o W · · T W #
 # C C C # · · · T · · · · · · · #
 # o · · · · · · · · · · · · · o #
-# # # # # # # # # # # # # # # # #
+# # # # # # D # # # # # # # # # #
 `);
 
 const resolveMapTile: TileMapResolver = (type, x, y) => {
@@ -72,6 +75,13 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Plant {...position} />
                 </Fragment>
             );
+        case 'D':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <OtherDoor {...position} />
+                </Fragment>
+            );
         default:
             return null;
     }
@@ -89,7 +99,19 @@ export default function OfficeScene() {
                 <Interactable />
                 <ScenePortal name="exit" enterDirection={[-1, 0]} target="other/start" />
             </GameObject>
+            <GameObject x={6} y={0}>
+                <Collider />
+                <Interactable />
+                <ScenePortal
+                    name="exitRoomTwo"
+                    enterDirection={[0, 1]}
+                    target="roomtwo/start"
+                />
+            </GameObject>
             <Player x={6} y={3} />
+            <NPC x={6} y={2} />
+            <NPC x={7} y={3} />
+            <NPC x={2} y={5} />
         </>
     );
 }

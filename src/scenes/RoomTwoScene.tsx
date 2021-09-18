@@ -9,7 +9,7 @@ import TileMap, { TileMapResolver } from '../@core/TileMap';
 import { mapDataString } from '../@core/utils/mapUtils';
 import Player from '../entities/Player';
 import spriteData from '../spriteData';
-import { roommapdata, roomdoor, roomdoordirection } from './mapdata/othermap';
+import { roommapdata, roomdoor, roomdoordirection } from './mapdata/roomtwomap';
 
 const mapData = mapDataString(roommapdata);
 const roomDoorEntrance = roomdoor;
@@ -38,7 +38,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
-export default function OtherScene() {
+export default function RoomTwoScene() {
     return (
         <>
             <GameObject name="map">
@@ -51,7 +51,7 @@ export default function OtherScene() {
                 <ScenePortal
                     name="start"
                     enterDirection={roomEnterDirection}
-                    target="office/exit"
+                    target="office/exitRoomTwo"
                 />
             </GameObject>
             <Player x={roomdoor.x} y={roomdoor.y} />

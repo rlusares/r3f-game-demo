@@ -37,6 +37,7 @@ const spriteData: { [index: string]: SpriteProps } = {
         sheet: {
             floor: [[0, 0]],
             wall: [[1, 0]],
+            door: [[3, 0]],
             'workstation-1': [[0, 1]],
             'workstation-2': [[1, 1]],
             'coffee-machine': [[2, 1]],
